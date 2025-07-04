@@ -151,18 +151,62 @@
     </header>
     
     <!-- ===== 作品占位区 ===== -->
-    <section class="gallery-section">
-  <!-- 分类导航 -->
-  <div class="gallery-nav">...</div>
+   <!-- 在</section>之后添加 -->
+<section class="gallery-section">
+  <h2>我的作品集</h2>
   
-  <!-- 图片网格 -->
+  <!-- 图片容器 -->
   <div class="gallery-grid">
+    <!-- 单个作品项 - 复制这个结构添加更多作品 -->
     <div class="gallery-item">
-      <img src="galleries/sunrise/sunrise-1.jpg">
-      <div class="info">...</div>
+      <img src="images/sunrise-1.jpg" alt="日出作品1">
+      <div class="photo-info">
+        <h3>黄山日出</h3>
+        <p>2023年7月 | 松下S5II</p>
+      </div>
     </div>
-    <!-- 更多图片 -->
+    
+    <!-- 添加更多作品... -->
   </div>
+</section>
+
+<style>
+/* 画廊样式 */
+.gallery-section {
+  padding: 60px 20px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+  transform: translateY(-10px);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-info {
+  padding: 15px;
+  background: #fff;
+}
+</style>
 </section>
     <section class="coming-soon">
         <h2>作品集筹备中</h2>
