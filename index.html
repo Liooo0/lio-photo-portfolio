@@ -98,29 +98,112 @@
             transform: translateY(-3px);
         }
         
-        /* === 占位提示 === */
-        .coming-soon {
+       
+        /* === 标题样式 === */
+        .gallery-header {
             text-align: center;
-            padding: 80px 20px;
-            color: #777;
+            padding: 50px 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .coming-soon h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
+        
+        .gallery-header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-        .coming-soon p {
-            max-width: 700px;
+        
+        .gallery-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
             margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        /* === 画廊网格系统 === */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            z-index: 2;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+        
+        .photo-info {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        
+        .photo-title {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+        
+        .photo-details {
+            display: flex;
+            justify-content: space-between;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+        
+        .exif-data {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #eee;
+            font-size: 0.85rem;
+            color: #95a5a6;
         }
         
         /* === 响应式设计 === */
         @media (max-width: 768px) {
-            .profile-info h1 { font-size: 2.2rem; }
-            .avatar { width: 150px; height: 150px; }
-            .social-links a { padding: 10px 20px; }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .gallery-header {
+                padding: 30px 15px;
+            }
+            
+            .gallery-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* === 加载优化 === */
+        .gallery-img {
+            background: linear-gradient(45deg, #f5f7fa, #e4e7eb);
         }
     </style>
 </head>
@@ -156,7 +239,66 @@
   <h2>我的作品集</h2>
   
   <!-- 图片容器 -->
-  <div class="gallery-grid">
+  <div class="gallery-grid"> <!-- 作品1 -->
+            <div class="gallery-item">
+                <img 
+                    src="images/bobby1.jpg" 
+                    alt="修狗" 
+                    class="gallery-img"
+                    loading="lazy"
+                >
+                <div class="photo-info">
+                    <h3 class="photo-title">狗</h3>
+                    <div class="photo-details">
+                        <span>狗1</span>
+                        <span>2023.07.15</span>
+                    </div>
+                    <div class="exif-data">
+                        ƒ/8.0 · 1/250s · ISO 200 · 24mm
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 作品2 -->
+            <div class="gallery-item">
+                <img 
+                    src="images/bobby2.jpg" 
+                    alt="修狗" 
+                    class="gallery-img"
+                    loading="lazy"
+                >
+                <div class="photo-info">
+                    <h3 class="photo-title">狗</h3>
+                    <div class="photo-details">
+                        <span>狗2</span>
+                        <span>2023.06.22</span>
+                    </div>
+                    <div class="exif-data">
+                        ƒ/11.0 · 1/125s · ISO 100 · 35mm
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 作品3 -->
+            <div class="gallery-item">
+                <img 
+                    src="images/bobby3.jpg" 
+                    alt="修狗狗" 
+                    class="gallery-img"
+                    loading="lazy"
+                >
+                <div class="photo-info">
+                    <h3 class="photo-title">狗</h3>
+                    <div class="photo-details">
+                        <span>狗3</span>
+                        <span>2023.05.10</span>
+                    </div>
+                    <div class="exif-data">
+                        ƒ/9.0 · 1/200s · ISO 400 · 50mm
+                    </div>
+                </div>
+            </div>
+            
        <!-- 图片1 - 复制这段代码修改即可 -->
     <div class="gallery-item">
       <img src="images/sunrise_001.jpg" alt="日出作品1">
@@ -175,7 +317,7 @@
       </div>
     </div>
      <div class="gallery-item">
-      <img src="images/sunrise-1.jpg" alt="我的修狗🐶">
+      <img src="images/bobby1.jpg" alt="我的修狗🐶">
       <div class="photo-info">
         <h3>波比</h3>
         <p>2025年7月至今 | 松下S5II</p>
