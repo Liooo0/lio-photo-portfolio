@@ -157,6 +157,15 @@
   
   <!-- 图片容器 -->
   <div class="gallery-grid">
+       <!-- 图片1 - 复制这段代码修改即可 -->
+    <div class="gallery-item">
+      <img src="images/sunrise_001.jpg" alt="日出作品1">
+      <div class="photo-info">
+        <h3>咸蛋黄</h3>
+        <p>深圳 | 2025年7月</p>
+      </div>
+    </div>
+    
     <!-- 单个作品项 - 复制这个结构添加更多作品 -->
     <div class="gallery-item">
       <img src="images/sunrise-1.jpg" alt="日出作品1">
@@ -177,6 +186,45 @@
 </section>
 
 <style>
+    /* ===== 网格布局样式 ===== */
+.gallery-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 40px auto;
+}
+
+.gallery-item {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-info {
+  padding: 18px;
+  background: white;
+  border-top: 1px solid #eee;
+}
+</style>
 /* 画廊样式 */
 .gallery-section {
   padding: 60px 20px;
