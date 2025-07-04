@@ -1,8 +1,48 @@
-<div class="gallery">
-    <!-- 修改src中的文件名匹配您的新名称 -->
-    <img src="images/lizhi.jpg" alt="美景">
-    
-    <!-- 推荐添加更多图片的格式 -->
-    <img src="images/cityscape.jpg" alt="城市风光">
-    <img src="images/portrait.jpg" alt="人像摄影">
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的摄影作品集</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <h1>捕捉光影瞬间</h1>
+    <div class="gallery">
+        <!-- 修改以下文件名 -->
+        <img src="images/lizhi.jpg" alt="日落时分">
+        <img src="images/cityscape.jpg" alt="城市风光">
+        <img src="images/portrait.jpg" alt="人像摄影">
+        <!-- 添加更多图片 -->
+    </div>
+</body>
+</html>
