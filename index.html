@@ -1,412 +1,97 @@
+<!-- photography-portfolio.html 自动生成相册页面（使用Node构建JSON）-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>刘迪迪 | 摄影作品集</title>
-    <style>
-        /* === 基础样式 === */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fafafa;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* === 个人信息区 === */
-        .profile-header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            padding: 50px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 30px 0;
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .profile-header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .profile-container {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-        }
-        .avatar {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 4px solid rgba(255,255,255,0.3);
-            object-fit: cover;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .profile-info {
-            text-align: center;
-        }
-        .profile-info h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-        .profile-info p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 25px;
-            color: rgba(255,255,255,0.9);
-        }
-        .social-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .social-links a:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-3px);
-        }
-        
-       
-        /* === 标题样式 === */
-        .gallery-header {
-            text-align: center;
-            padding: 50px 20px;
-            margin-bottom: 30px;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            border-radius: 12px;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .gallery-header h1 {
-            font-size: 3.2rem;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .gallery-header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-        
-        /* === 画廊网格系统 === */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            padding: 20px 0;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: white;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            z-index: 2;
-        }
-        
-        .gallery-img {
-            width: 100%;
-            height: 300px;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.05);
-        }
-        
-        .photo-info {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid #eee;
-        }
-        
-        .photo-title {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-            color: var(--dark-color);
-        }
-        
-        .photo-details {
-            display: flex;
-            justify-content: space-between;
-            color: #7f8c8d;
-            font-size: 0.95rem;
-        }
-        
-        .exif-data {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px dashed #eee;
-            font-size: 0.85rem;
-            color: #95a5a6;
-        }
-        
-        /* === 响应式设计 === */
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .gallery-header {
-                padding: 30px 15px;
-            }
-            
-            .gallery-header h1 {
-                font-size: 2.5rem;
-            }
-        }
-        
-        /* === 加载优化 === */
-        .gallery-img {
-            background: linear-gradient(45deg, #f5f7fa, #e4e7eb);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIO 的摄影作品集</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+    header {
+      background: linear-gradient(120deg, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    .gallery {
+      max-width: 1200px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+    .item {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    .item:hover {
+      transform: scale(1.03);
+    }
+    .item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .info {
+      padding: 15px;
+    }
+    .info h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+    .info p {
+      margin: 0;
+      color: #666;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
-    <!-- ===== 个人信息区 ===== -->
-    <header class="profile-header">
-        <div class="profile-container">
-            <img src="avatar.jpg" alt="摄影师头像" class="avatar">
-            <div class="profile-info">
-                <h1>刘迪迪-LIO</h1>
-                <p>光影捕手 | 松下S5II创作者 | 用镜头讲述故事的人</p>
-                <div class="social-links">
-                    <a href="#">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.441 16.892c-2.102.144-6.784.144-8.883 0C5.282 16.736 5.017 15.622 5 12c.017-3.629.285-4.736 2.558-4.892 2.099-.144 6.782-.144 8.883 0C18.718 7.264 18.982 8.378 19 12c-.018 3.629-.285 4.736-2.559 4.892zM10 9.658l4.917 2.338L10 14.342V9.658z"/></svg>
-                        YouTube
-                    </a>
-                    <a href="#">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.441 16.892c-2.102.144-6.784.144-8.883 0C5.282 16.736 5.017 15.622 5 12c.017-3.629.285-4.736 2.558-4.892 2.099-.144 6.782-.144 8.883 0C18.718 7.264 18.982 8.378 19 12c-.018 3.629-.285 4.736-2.559 4.892zM10 9.658l4.917 2.338L10 14.342V9.658z"/></svg>
-                        小红书
-                    </a>
-                    <a href="#">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.97 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.27 20.1H3.65V9.24h3.62V20.1zM5.47 7.76h-.03c-1.22 0-2-.83-2-1.87 0-1.06.8-1.87 2.05-1.87 1.24 0 2 .8 2.02 1.87 0 1.04-.78 1.87-2.05 1.87zM20.34 20.1h-3.63v-5.8c0-1.45-.52-2.45-1.83-2.45-1 0-1.6.67-1.87 1.32-.1.23-.11.55-.11.88v6.05h-3.63s.05-9.82 0-10.84h3.63v1.54a3.6 3.6 0 0 1 3.26-1.8c2.39 0 4.18 1.56 4.18 4.89v6.21z"/></svg>
-                        微信联系
-                    </a>
-                </div>
+  <header>
+    <h1>LIO 的摄影作品集</h1>
+    <p>使用松下 S5II + 适马 28-70mm f/2.8 拍摄 | 自动生成图库 | 共赏光影之美</p>
+  </header>
+  <main>
+    <div class="gallery" id="gallery"></div>
+  </main>
+  <script>
+    // 自动加载 gallery.json
+    fetch('gallery.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('gallery');
+        for (const item of data) {
+          const div = document.createElement('div');
+          div.className = 'item';
+          div.innerHTML = `
+            <img src="${item.src}" alt="${item.title}">
+            <div class="info">
+              <h3>${item.title}</h3>
+              <p>${item.category} | ${item.date}</p>
             </div>
-        </div>
-    </header>
-    
-    <!-- ===== 作品占位区 ===== -->
-   <!-- 在</section>之后添加 -->
-<section class="gallery-section">
-  <h2>我的作品集</h2>
-  
-  <!-- 图片容器 -->
-  <div class="gallery-grid"> <!-- 作品1 -->
-            <div class="gallery-item">
-                <img 
-                    src="images/bobby1.jpg" 
-                    alt="修狗" 
-                    class="gallery-img"
-                    loading="lazy"
-                >
-                <div class="photo-info">
-                    <h3 class="photo-title">狗</h3>
-                    <div class="photo-details">
-                        <span>狗1</span>
-                        <span>2023.07.15</span>
-                    </div>
-                    <div class="exif-data">
-                        ƒ/8.0 · 1/250s · ISO 200 · 24mm
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 作品2 -->
-            <div class="gallery-item">
-                <img 
-                    src="images/bobby2.jpg" 
-                    alt="修狗" 
-                    class="gallery-img"
-                    loading="lazy"
-                >
-                <div class="photo-info">
-                    <h3 class="photo-title">狗</h3>
-                    <div class="photo-details">
-                        <span>狗2</span>
-                        <span>2023.06.22</span>
-                    </div>
-                    <div class="exif-data">
-                        ƒ/11.0 · 1/125s · ISO 100 · 35mm
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 作品3 -->
-            <div class="gallery-item">
-                <img 
-                    src="images/bobby3.jpg" 
-                    alt="修狗狗" 
-                    class="gallery-img"
-                    loading="lazy"
-                >
-                <div class="photo-info">
-                    <h3 class="photo-title">狗</h3>
-                    <div class="photo-details">
-                        <span>狗3</span>
-                        <span>2023.05.10</span>
-                    </div>
-                    <div class="exif-data">
-                        ƒ/9.0 · 1/200s · ISO 400 · 50mm
-                    </div>
-                </div>
-            </div>
-            
-       <!-- 图片1 - 复制这段代码修改即可 -->
-    <div class="gallery-item">
-      <img src="images/sunrise_001.jpg" alt="日出作品1">
-      <div class="photo-info">
-        <h3>咸蛋黄</h3>
-        <p>深圳 | 2025年7月</p>
-      </div>
-    </div>
-    
-    <!-- 单个作品项 - 复制这个结构添加更多作品 -->
-    <div class="gallery-item">
-      <img src="images/sunrise-1.jpg" alt="日出作品1">
-      <div class="photo-info">
-        <h3>日出</h3>
-        <p>2025年7月 | 松下S5II</p>
-      </div>
-    </div>
-     <div class="gallery-item">
-      <img src="images/bobby1.jpg" alt="我的修狗🐶">
-      <div class="photo-info">
-        <h3>波比</h3>
-        <p>2025年7月至今 | 松下S5II</p>
-      </div>
-    </div>
-    <!-- 添加更多作品... -->
-  </div>
-</section>
-
-<style>
-    /* ===== 网格布局样式 ===== */
-.gallery-section {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 30px;
-  max-width: 1400px;
-  margin: 40px auto;
-}
-
-.gallery-item {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-}
-
-.gallery-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-}
-
-.photo-info {
-  padding: 18px;
-  background: white;
-  border-top: 1px solid #eee;
-}
-</style>
-/* 画廊样式 */
-.gallery-section {
-  padding: 60px 20px;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.gallery-item {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-
-.gallery-item:hover {
-  transform: translateY(-10px);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-}
-
-.photo-info {
-  padding: 15px;
-  background: #fff;
-}
-</style>
-</section>
-    <section class="coming-soon">
-        <h2>作品集筹备中</h2>
-        <p>我的松下S5II摄影作品正在精心挑选与后期处理中，首批日出系列与城市风光即将上线。<br>请关注我的社交媒体获取最新创作动态。</p>
-    </section>
+          `;
+          container.appendChild(div);
+        }
+      });
+  </script>
 </body>
 </html>
