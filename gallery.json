@@ -1,0 +1,20 @@
+[
+  {
+    "title": "日出作品1",
+    "category": "sunrise",
+    "date": "2025年7月",
+    "src": "images/sunrise/sunrise01.jpg"
+  },
+  {
+    "title": "修狗1号",
+    "category": "bobby",
+    "date": "2025年7月",
+    "src": "images/bobby/bobby01.jpg"
+  },
+  {
+    "title": "星光1",
+    "category": "star",
+    "date": "2025年7月",
+    "src": "images/star/star01.jpg"
+  }
+]
