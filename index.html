@@ -150,6 +150,12 @@
             </div>
           `;
           container.appendChild(div);
+
+          const preferredOrder = ['star', 'sunrise', 'bobby'];
+
+data.sort((a, b) => {
+  return preferredOrder.indexOf(a.category) - preferredOrder.indexOf(b.category);
+});
         });
       });
   </script>
