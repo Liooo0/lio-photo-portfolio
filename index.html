@@ -1,163 +1,47 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LIO 的摄影作品集</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    /* Header 样式 */
-    .profile-header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      text-align: center;
-      padding: 60px 20px 40px;
-    }
-
-    .avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 4px solid rgba(255,255,255,0.3);
-      object-fit: cover;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-    }
-
-    .profile-info h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .profile-info p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    /* 作品集区域 */
-    .gallery {
-      max-width: 1200px;
-      margin: 40px auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 25px;
-      padding: 0 20px;
-    }
-
-    .item {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
-    }
-
-    .item:hover {
-      transform: translateY(-8px);
-    }
-
-    .item img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .info {
-      padding: 15px;
-    }
-
-    .info h3 {
-      font-size: 1.1rem;
-      margin: 0 0 5px;
-    }
-
-    .info p {
-      font-size: 0.9rem;
-      color: #777;
-      margin: 0;
-    }
-
-    /* Footer 样式 */
-    footer {
-      text-align: center;
-      padding: 30px 10px;
-      color: #666;
-      font-size: 0.95rem;
-      border-top: 1px solid #e1e1e1;
-      margin-top: 40px;
-    }
-
-    footer a {
-      color: #1e3c72;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lio Photography</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
-  <!-- Header -->
-  <header class="profile-header">
-    <img src="avatar.jpg" alt="摄影师头像" class="avatar" />
-    <div class="profile-info">
-      <h1>刘迪迪 - LIO</h1>
-      <p>光影捕手｜松下S5II创作者｜风景摄影师</p>
+  <!-- Hero Section -->
+  <header class="hero">
+    <img src="images/hero.jpg" alt="Meteor Hero" class="hero-img" />
+    <div class="hero-text">
+      <h1>Lio Photography</h1>
+      <p>Chasing the stars · Capturing the light</p>
+      <a href="#gallery" class="btn">Enter Gallery</a>
     </div>
   </header>
 
-  <!-- Gallery -->
-  <main>
-    <div class="gallery" id="gallery"></div>
-  </main>
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <h2>Photography Works</h2>
+    <div id="gallery-grid" class="grid"></div>
+  </section>
+
+  <!-- Video Section -->
+  <section id="videos" class="section">
+    <h2>Video Works</h2>
+    <div id="video-grid" class="grid"></div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:lio@example.com">lio@example.com</a></p>
+    <!-- Optional: Add QR code or other contact info here -->
+  </section>
 
   <!-- Footer -->
   <footer>
-    📫 联系我：<a href="mailto:1303777165@qq.com">1303777165@qq.com</a>
+    <p>© 2025 Lio Photography. All rights reserved.</p>
   </footer>
 
-  <!-- Script -->
-  <script>
-    fetch('gallery.json')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('gallery');
-        data.forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'item';
-          div.innerHTML = `
-            <img src="${item.src}" alt="${item.title}" loading="lazy">
-            <div class="info">
-              <h3>${item.title}</h3>
-              <p>${item.category} | ${item.date}</p>
-            </div>
-          `;
-          container.appendChild(div);
-
-          const preferredOrder = ['star', 'sunrise', 'bobby'];
-
-data.sort((a, b) => {
-  return preferredOrder.indexOf(a.category) - preferredOrder.indexOf(b.category);
-});
-        });
-      });
-  </script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
