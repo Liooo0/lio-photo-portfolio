@@ -1,28 +1,185 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的摄影作品集</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LIO 的摄影作品集</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Hero 封面 */
+    .hero {
+      position: relative;
+      text-align: center;
+      color: white;
+    }
+    .hero img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: rgba(0,0,0,0.4);
+      padding: 20px 40px;
+      border-radius: 12px;
+    }
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+    }
+
+    /* Gallery 样式 */
+    .gallery {
+      max-width: 1200px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 0 20px;
+    }
+    .item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .item:hover {
+      transform: translateY(-8px);
+    }
+    .item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .info {
+      padding: 15px;
+    }
+    .info h3 {
+      font-size: 1.1rem;
+      margin: 0 0 5px;
+    }
+    .info p {
+      font-size: 0.9rem;
+      color: #777;
+      margin: 0;
+    }
+
+    /* 年度归档 */
+    .archive {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    details {
+      margin-bottom: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      padding: 15px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    /* Footer 样式 */
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      color: #666;
+      font-size: 0.95rem;
+      border-top: 1px solid #e1e1e1;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #1e3c72;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>我的摄影作品集</h1>
-  </header>
 
+  <!-- Hero -->
+  <section class="hero">
+    <img src="images/best2025.jpg" alt="2025 年度最佳照片">
+    <div class="hero-text">
+      <h1>2025 年度最佳作品</h1>
+      <p>光影的瞬间 · LIO</p>
+    </div>
+  </section>
+
+  <!-- 2025 精选作品 -->
   <main>
-    <section id="gallery" class="section">
-      <h2>摄影作品</h2>
-      <div id="gallery-grid"></div>
-    </section>
+    <h2 style="text-align:center; margin-top:40px;">2025 精选作品</h2>
+    <div class="gallery">
+      <div class="item">
+        <img src="images/2025/star01.jpg" alt="作品1">
+        <div class="info"><h3>流星划过</h3><p>星空 · 2025</p></div>
+      </div>
+      <div class="item">
+        <img src="images/2025/star02.jpg" alt="作品2">
+        <div class="info"><h3>日出之光</h3><p>风景 · 2025</p></div>
+      </div>
+      <!-- 你可以继续往下加 -->
+    </div>
   </main>
 
+  <!-- 年度归档 -->
+  <section class="archive">
+    <h2 style="text-align:center; margin-bottom:20px;">历年作品归档</h2>
+
+    <details>
+      <summary>2024 年作品</summary>
+      <div class="gallery">
+        <div class="item"><img src="images/2024/work01.jpg" alt=""><div class="info"><h3>标题</h3><p>分类 · 2024</p></div></div>
+        <div class="item"><img src="images/2024/work02.jpg" alt=""><div class="info"><h3>标题</h3><p>分类 · 2024</p></div></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>2023 年作品</summary>
+      <div class="gallery">
+        <div class="item"><img src="images/2023/work01.jpg" alt=""></div>
+        <div class="item"><img src="images/2023/work02.jpg" alt=""></div>
+      </div>
+    </details>
+
+    <!-- 你可以往下加 2022、2021…直到 2017 -->
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>© 2025 狸欧lio | 联系方式：diod1214@gmail.com</p>
+    📫 联系我：<a href="mailto:1303777165@qq.com">1303777165@qq.com</a><br>
+    © 2017–2025 LIO. All rights reserved.
   </footer>
 
-  <!-- 脚本 -->
-  <script src="assets/script.js"></script>
 </body>
 </html>
