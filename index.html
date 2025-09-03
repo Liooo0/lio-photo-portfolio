@@ -17,6 +17,28 @@
     .hero {
       height: 100vh;
       background: url('images/best2025.jpg') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 首页文字 */
+    .hero-title {
+      position: absolute;
+      font-size: 3rem;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 15px 25px;
+      border-radius: 8px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1s ease;
+    }
+    .hero-title.show {
+      opacity: 1;
+      transform: scale(1);
     }
 
     /* 头像与简介 */
@@ -85,7 +107,9 @@
 <body>
 
   <!-- 首页 Hero 大图 -->
-  <div class="hero" data-aos="fade-in"></div>
+  <div class="hero">
+    <div class="hero-title">2025 最佳作品</div>
+  </div>
 
   <!-- 头像与简介 -->
   <div class="intro" data-aos="zoom-in">
@@ -114,8 +138,15 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
-      duration: 1200, // 动画时长
-      once: true     // 滚动过后不重复
+      duration: 1200,
+      once: true
+    });
+
+    // 延迟 2 秒显示 Hero 标题
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.querySelector(".hero-title").classList.add("show");
+      }, 2000);
     });
   </script>
 </body>
