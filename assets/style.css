@@ -41,3 +41,11 @@ h1 {
 #gallery-grid img:hover {
   transform: scale(1.05);
 }
+.avatar {
+  width: 150px;       /* 根据需要调整大小 */
+  height: 150px;
+  border-radius: 50%; /* 圆形的关键 */
+  object-fit: cover;  /* 防止拉伸 */
+  display: block;
+  margin: 0 auto;     /* 居中 */
+}
