@@ -2,79 +2,131 @@
   {
     "title": "bird01",
     "category": "bird",
-    "src": "images/bird01.jpg",
-    "thumb": "thumbnails/bird01.jpg"
+    "thumb": "optimized/thumb/bird01.webp",
+    "display": "optimized/display/bird01.webp",
+    "full": "optimized/full/bird01.webp",
+    "thumb_kb": 17,
+    "display_kb": 105,
+    "full_kb": 324
   },
   {
     "title": "bird02",
     "category": "bird",
-    "src": "images/bird02.jpg",
-    "thumb": "thumbnails/bird02.jpg"
+    "thumb": "optimized/thumb/bird02.webp",
+    "display": "optimized/display/bird02.webp",
+    "full": "optimized/full/bird02.webp",
+    "thumb_kb": 12,
+    "display_kb": 81,
+    "full_kb": 254
   },
   {
     "title": "flower",
     "category": "flower",
-    "src": "images/flower.jpg",
-    "thumb": "thumbnails/flower.jpg"
+    "thumb": "optimized/thumb/flower.webp",
+    "display": "optimized/display/flower.webp",
+    "full": "optimized/full/flower.webp",
+    "thumb_kb": 10,
+    "display_kb": 51,
+    "full_kb": 161
   },
   {
     "title": "lotus01",
     "category": "lotus",
-    "src": "images/lotus01.jpg",
-    "thumb": "thumbnails/lotus01.jpg"
+    "thumb": "optimized/thumb/lotus01.webp",
+    "display": "optimized/display/lotus01.webp",
+    "full": "optimized/full/lotus01.webp",
+    "thumb_kb": 8,
+    "display_kb": 50,
+    "full_kb": 308
   },
   {
     "title": "lotus02",
     "category": "lotus",
-    "src": "images/lotus02.jpg",
-    "thumb": "thumbnails/lotus02.jpg"
+    "thumb": "optimized/thumb/lotus02.webp",
+    "display": "optimized/display/lotus02.webp",
+    "full": "optimized/full/lotus02.webp",
+    "thumb_kb": 6,
+    "display_kb": 39,
+    "full_kb": 139
   },
   {
     "title": "lotus03",
     "category": "lotus",
-    "src": "images/lotus03.jpg",
-    "thumb": "thumbnails/lotus03.jpg"
+    "thumb": "optimized/thumb/lotus03.webp",
+    "display": "optimized/display/lotus03.webp",
+    "full": "optimized/full/lotus03.webp",
+    "thumb_kb": 11,
+    "display_kb": 60,
+    "full_kb": 176
   },
   {
     "title": "lotus04",
     "category": "lotus",
-    "src": "images/lotus04.jpg",
-    "thumb": "thumbnails/lotus04.jpg"
+    "thumb": "optimized/thumb/lotus04.webp",
+    "display": "optimized/display/lotus04.webp",
+    "full": "optimized/full/lotus04.webp",
+    "thumb_kb": 14,
+    "display_kb": 83,
+    "full_kb": 258
   },
   {
     "title": "pet",
     "category": "pet",
-    "src": "images/pet.jpg",
-    "thumb": "thumbnails/pet.jpg"
+    "thumb": "optimized/thumb/pet.webp",
+    "display": "optimized/display/pet.webp",
+    "full": "optimized/full/pet.webp",
+    "thumb_kb": 23,
+    "display_kb": 155,
+    "full_kb": 981
   },
   {
     "title": "star01",
     "category": "star",
-    "src": "images/star/star01.jpg",
-    "thumb": "thumbnails/star/star01.jpg"
+    "thumb": "optimized/thumb/star__star01.webp",
+    "display": "optimized/display/star__star01.webp",
+    "full": "optimized/full/star__star01.webp",
+    "thumb_kb": 13,
+    "display_kb": 183,
+    "full_kb": 900
   },
   {
     "title": "sunrise01",
     "category": "sunrise",
-    "src": "images/sunrise/sunrise01.jpg",
-    "thumb": "thumbnails/sunrise/sunrise01.jpg"
+    "thumb": "optimized/thumb/sunrise__sunrise01.webp",
+    "display": "optimized/display/sunrise__sunrise01.webp",
+    "full": "optimized/full/sunrise__sunrise01.webp",
+    "thumb_kb": 4,
+    "display_kb": 25,
+    "full_kb": 88
   },
   {
     "title": "sunset01",
     "category": "sunset",
-    "src": "images/sunset/sunset01.JPG",
-    "thumb": "thumbnails/sunset/sunset01.JPG"
+    "thumb": "optimized/thumb/sunset__sunset01.webp",
+    "display": "optimized/display/sunset__sunset01.webp",
+    "full": "optimized/full/sunset__sunset01.webp",
+    "thumb_kb": 12,
+    "display_kb": 87,
+    "full_kb": 309
   },
   {
     "title": "sunset02",
     "category": "sunset",
-    "src": "images/sunset/sunset02.JPG",
-    "thumb": "thumbnails/sunset/sunset02.JPG"
+    "thumb": "optimized/thumb/sunset__sunset02.webp",
+    "display": "optimized/display/sunset__sunset02.webp",
+    "full": "optimized/full/sunset__sunset02.webp",
+    "thumb_kb": 27,
+    "display_kb": 296,
+    "full_kb": 1213
   },
   {
     "title": "sunset",
     "category": "sunset",
-    "src": "images/sunset.jpg",
-    "thumb": "thumbnails/sunset.jpg"
+    "thumb": "optimized/thumb/sunset.webp",
+    "display": "optimized/display/sunset.webp",
+    "full": "optimized/full/sunset.webp",
+    "thumb_kb": 6,
+    "display_kb": 44,
+    "full_kb": 155
   }
 ]

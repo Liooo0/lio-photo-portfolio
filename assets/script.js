@@ -119,13 +119,13 @@
   function createGalleryItem(img, index) {
     const item = document.createElement('div');
     item.className = 'gallery-item';
-    const displaySrc = img.thumb || img.src;  // thumbnail for gallery, full for lightbox
+    // thumb (400px WebP) for gallery; full (2560px WebP) for lightbox via data attribute
     item.innerHTML = `
-      <img src="${displaySrc}" alt="${img.title}" loading="lazy">
+      <img src="${img.thumb}" alt="${img.title}" loading="lazy" data-full="${img.full}">
       <div class="overlay">
         <div class="info">
           <div class="title">${formatTitle(img.title)}</div>
-          <div class="date">${img.category}</div>
+          <div class="date">${formatCategory(img.category)}</div>
         </div>
       </div>
     `;
@@ -172,7 +172,8 @@
     const idx = window._lbIndex;
     const img = lightboxImages[idx];
     if (!img) return;
-    lbImage.src = img.src;
+    // Use full-resolution WebP if available, fallback to src
+    lbImage.src = img.full || img.src;
     lbImage.alt = img.title;
     lbCounter.textContent = `${idx + 1} / ${lightboxImages.length}`;
   }
