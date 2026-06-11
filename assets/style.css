@@ -28,7 +28,7 @@ a { color: inherit; text-decoration: none; }
 /* === Hero === */
 .hero {
   height: 100vh;
-  background: url('../images/best2025.jpg') center/cover no-repeat;
+  background: url('../images/best2025-hero.jpg') center/cover no-repeat;
   background-attachment: fixed;
   position: relative;
   display: flex;
