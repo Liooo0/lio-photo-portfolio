@@ -1,272 +1,132 @@
 [
   {
-    "title": "CICF-公孙离",
-    "category": "event",
-    "thumb": "optimized/thumb/CICF-公孙离.webp",
-    "display": "optimized/display/CICF-公孙离.webp",
-    "full": "optimized/full/CICF-公孙离.webp",
-    "thumb_kb": 22,
-    "display_kb": 166,
-    "full_kb": 624
-  },
-  {
-    "title": "CICF-武藏",
-    "category": "event",
-    "thumb": "optimized/thumb/CICF-武藏.webp",
-    "display": "optimized/display/CICF-武藏.webp",
-    "full": "optimized/full/CICF-武藏.webp",
-    "thumb_kb": 44,
-    "display_kb": 288,
-    "full_kb": 1131
-  },
-  {
-    "title": "云南-风情",
-    "category": "travel",
-    "thumb": "optimized/thumb/云南-风情.webp",
-    "display": "optimized/display/云南-风情.webp",
-    "full": "optimized/full/云南-风情.webp",
-    "thumb_kb": 32,
-    "display_kb": 228,
-    "full_kb": 801
-  },
-  {
-    "title": "北京-故宫",
-    "category": "travel",
-    "thumb": "optimized/thumb/北京-故宫.webp",
-    "display": "optimized/display/北京-故宫.webp",
-    "full": "optimized/full/北京-故宫.webp",
-    "thumb_kb": 58,
-    "display_kb": 407,
-    "full_kb": 1365
-  },
-  {
-    "title": "北京-长城",
-    "category": "travel",
-    "thumb": "optimized/thumb/北京-长城.webp",
-    "display": "optimized/display/北京-长城.webp",
-    "full": "optimized/full/北京-长城.webp",
-    "thumb_kb": 14,
-    "display_kb": 97,
-    "full_kb": 1239
-  },
-  {
-    "title": "天文台-俯瞰",
-    "category": "landscape",
-    "thumb": "optimized/thumb/天文台-俯瞰.webp",
-    "display": "optimized/display/天文台-俯瞰.webp",
-    "full": "optimized/full/天文台-俯瞰.webp",
-    "thumb_kb": 65,
-    "display_kb": 560,
-    "full_kb": 1914
-  },
-  {
-    "title": "山西-古城",
-    "category": "travel",
-    "thumb": "optimized/thumb/山西-古城.webp",
-    "display": "optimized/display/山西-古城.webp",
-    "full": "optimized/full/山西-古城.webp",
-    "thumb_kb": 31,
-    "display_kb": 327,
-    "full_kb": 1963
-  },
-  {
-    "title": "改装车展-姿态",
-    "category": "automotive",
-    "thumb": "optimized/thumb/改装车展-姿态.webp",
-    "display": "optimized/display/改装车展-姿态.webp",
-    "full": "optimized/full/改装车展-姿态.webp",
-    "thumb_kb": 18,
-    "display_kb": 119,
-    "full_kb": 868
-  },
-  {
-    "title": "日出-深圳湾",
-    "category": "sunrise",
-    "thumb": "optimized/thumb/日出-深圳湾.webp",
-    "display": "optimized/display/日出-深圳湾.webp",
-    "full": "optimized/full/日出-深圳湾.webp",
-    "thumb_kb": 3,
-    "display_kb": 29,
-    "full_kb": 139
-  },
-  {
-    "title": "日出-神光",
-    "category": "sunrise",
-    "thumb": "optimized/thumb/日出-神光.webp",
-    "display": "optimized/display/日出-神光.webp",
-    "full": "optimized/full/日出-神光.webp",
-    "thumb_kb": 3,
-    "display_kb": 27,
-    "full_kb": 113
-  },
-  {
-    "title": "晚霞-城市",
-    "category": "sunset",
-    "thumb": "optimized/thumb/晚霞-城市.webp",
-    "display": "optimized/display/晚霞-城市.webp",
-    "full": "optimized/full/晚霞-城市.webp",
-    "thumb_kb": 27,
-    "display_kb": 232,
-    "full_kb": 269
-  },
-  {
-    "title": "晚霞-火烧云",
-    "category": "sunset",
-    "thumb": "optimized/thumb/晚霞-火烧云.webp",
-    "display": "optimized/display/晚霞-火烧云.webp",
-    "full": "optimized/full/晚霞-火烧云.webp",
-    "thumb_kb": 8,
-    "display_kb": 93,
-    "full_kb": 448
-  },
-  {
-    "title": "深圳湾-晚霞",
-    "category": "sunset",
-    "thumb": "optimized/thumb/深圳湾-晚霞.webp",
-    "display": "optimized/display/深圳湾-晚霞.webp",
-    "full": "optimized/full/深圳湾-晚霞.webp",
-    "thumb_kb": 38,
-    "display_kb": 411,
-    "full_kb": 1740
-  },
-  {
-    "title": "深圳湾-晨光",
-    "category": "cityscape",
-    "thumb": "optimized/thumb/深圳湾-晨光.webp",
-    "display": "optimized/display/深圳湾-晨光.webp",
-    "full": "optimized/full/深圳湾-晨光.webp",
-    "thumb_kb": 13,
-    "display_kb": 93,
+    "title": "bird01",
+    "category": "bird",
+    "thumb": "optimized/thumb/bird01.webp",
+    "display": "optimized/display/bird01.webp",
+    "full": "optimized/full/bird01.webp",
+    "thumb_kb": 17,
+    "display_kb": 105,
     "full_kb": 324
   },
   {
-    "title": "深圳湾-黄昏",
-    "category": "cityscape",
-    "thumb": "optimized/thumb/深圳湾-黄昏.webp",
-    "display": "optimized/display/深圳湾-黄昏.webp",
-    "full": "optimized/full/深圳湾-黄昏.webp",
-    "thumb_kb": 5,
-    "display_kb": 38,
-    "full_kb": 379
+    "title": "bird02",
+    "category": "bird",
+    "thumb": "optimized/thumb/bird02.webp",
+    "display": "optimized/display/bird02.webp",
+    "full": "optimized/full/bird02.webp",
+    "thumb_kb": 12,
+    "display_kb": 81,
+    "full_kb": 254
   },
   {
-    "title": "猫-好奇",
-    "category": "pet",
-    "thumb": "optimized/thumb/猫-好奇.webp",
-    "display": "optimized/display/猫-好奇.webp",
-    "full": "optimized/full/猫-好奇.webp",
+    "title": "flower",
+    "category": "flower",
+    "thumb": "optimized/thumb/flower.webp",
+    "display": "optimized/display/flower.webp",
+    "full": "optimized/full/flower.webp",
+    "thumb_kb": 10,
+    "display_kb": 51,
+    "full_kb": 161
+  },
+  {
+    "title": "lotus01",
+    "category": "lotus",
+    "thumb": "optimized/thumb/lotus01.webp",
+    "display": "optimized/display/lotus01.webp",
+    "full": "optimized/full/lotus01.webp",
+    "thumb_kb": 8,
+    "display_kb": 50,
+    "full_kb": 308
+  },
+  {
+    "title": "lotus02",
+    "category": "lotus",
+    "thumb": "optimized/thumb/lotus02.webp",
+    "display": "optimized/display/lotus02.webp",
+    "full": "optimized/full/lotus02.webp",
     "thumb_kb": 6,
-    "display_kb": 40,
-    "full_kb": 73
+    "display_kb": 39,
+    "full_kb": 139
   },
   {
-    "title": "猫-慵懒",
+    "title": "lotus03",
+    "category": "lotus",
+    "thumb": "optimized/thumb/lotus03.webp",
+    "display": "optimized/display/lotus03.webp",
+    "full": "optimized/full/lotus03.webp",
+    "thumb_kb": 11,
+    "display_kb": 60,
+    "full_kb": 176
+  },
+  {
+    "title": "lotus04",
+    "category": "lotus",
+    "thumb": "optimized/thumb/lotus04.webp",
+    "display": "optimized/display/lotus04.webp",
+    "full": "optimized/full/lotus04.webp",
+    "thumb_kb": 14,
+    "display_kb": 83,
+    "full_kb": 258
+  },
+  {
+    "title": "pet",
     "category": "pet",
-    "thumb": "optimized/thumb/猫-慵懒.webp",
-    "display": "optimized/display/猫-慵懒.webp",
-    "full": "optimized/full/猫-慵懒.webp",
-    "thumb_kb": 5,
-    "display_kb": 28,
-    "full_kb": 60
+    "thumb": "optimized/thumb/pet.webp",
+    "display": "optimized/display/pet.webp",
+    "full": "optimized/full/pet.webp",
+    "thumb_kb": 23,
+    "display_kb": 155,
+    "full_kb": 981
   },
   {
-    "title": "神光山-叠翠",
-    "category": "landscape",
-    "thumb": "optimized/thumb/神光山-叠翠.webp",
-    "display": "optimized/display/神光山-叠翠.webp",
-    "full": "optimized/full/神光山-叠翠.webp",
-    "thumb_kb": 57,
-    "display_kb": 615,
-    "full_kb": 2577
-  },
-  {
-    "title": "神光山-层林",
-    "category": "landscape",
-    "thumb": "optimized/thumb/神光山-层林.webp",
-    "display": "optimized/display/神光山-层林.webp",
-    "full": "optimized/full/神光山-层林.webp",
-    "thumb_kb": 35,
-    "display_kb": 330,
-    "full_kb": 1321
-  },
-  {
-    "title": "花展-特写",
-    "category": "flower",
-    "thumb": "optimized/thumb/花展-特写.webp",
-    "display": "optimized/display/花展-特写.webp",
-    "full": "optimized/full/花展-特写.webp",
-    "thumb_kb": 34,
-    "display_kb": 244,
-    "full_kb": 1652
-  },
-  {
-    "title": "花展-缤纷",
-    "category": "flower",
-    "thumb": "optimized/thumb/花展-缤纷.webp",
-    "display": "optimized/display/花展-缤纷.webp",
-    "full": "optimized/full/花展-缤纷.webp",
-    "thumb_kb": 26,
-    "display_kb": 176,
-    "full_kb": 1349
-  },
-  {
-    "title": "荷花-倒影",
-    "category": "lotus",
-    "thumb": "optimized/thumb/荷花-倒影.webp",
-    "display": "optimized/display/荷花-倒影.webp",
-    "full": "optimized/full/荷花-倒影.webp",
-    "thumb_kb": 16,
-    "display_kb": 112,
-    "full_kb": 506
-  },
-  {
-    "title": "荷花-清韵",
-    "category": "lotus",
-    "thumb": "optimized/thumb/荷花-清韵.webp",
-    "display": "optimized/display/荷花-清韵.webp",
-    "full": "optimized/full/荷花-清韵.webp",
-    "thumb_kb": 29,
-    "display_kb": 207,
-    "full_kb": 1270
-  },
-  {
-    "title": "荷花-绽放",
-    "category": "lotus",
-    "thumb": "optimized/thumb/荷花-绽放.webp",
-    "display": "optimized/display/荷花-绽放.webp",
-    "full": "optimized/full/荷花-绽放.webp",
-    "thumb_kb": 65,
-    "display_kb": 473,
-    "full_kb": 1779
-  },
-  {
-    "title": "萤火虫-小树林",
+    "title": "star01",
     "category": "star",
-    "thumb": "optimized/thumb/萤火虫-小树林.webp",
-    "display": "optimized/display/萤火虫-小树林.webp",
-    "full": "optimized/full/萤火虫-小树林.webp",
-    "thumb_kb": 46,
-    "display_kb": 413,
-    "full_kb": 1556
-  },
-  {
-    "title": "萤火虫",
-    "category": "star",
-    "thumb": "optimized/thumb/萤火虫.webp",
-    "display": "optimized/display/萤火虫.webp",
-    "full": "optimized/full/萤火虫.webp",
+    "thumb": "optimized/thumb/star__star01.webp",
+    "display": "optimized/display/star__star01.webp",
+    "full": "optimized/full/star__star01.webp",
     "thumb_kb": 13,
-    "display_kb": 93,
-    "full_kb": 1154
+    "display_kb": 183,
+    "full_kb": 900
   },
   {
-    "title": "领克-夜拍",
-    "category": "automotive",
-    "thumb": "optimized/thumb/领克-夜拍.webp",
-    "display": "optimized/display/领克-夜拍.webp",
-    "full": "optimized/full/领克-夜拍.webp",
-    "thumb_kb": 7,
-    "display_kb": 65,
-    "full_kb": 266
+    "title": "sunrise01",
+    "category": "sunrise",
+    "thumb": "optimized/thumb/sunrise__sunrise01.webp",
+    "display": "optimized/display/sunrise__sunrise01.webp",
+    "full": "optimized/full/sunrise__sunrise01.webp",
+    "thumb_kb": 4,
+    "display_kb": 25,
+    "full_kb": 88
+  },
+  {
+    "title": "sunset01",
+    "category": "sunset",
+    "thumb": "optimized/thumb/sunset__sunset01.webp",
+    "display": "optimized/display/sunset__sunset01.webp",
+    "full": "optimized/full/sunset__sunset01.webp",
+    "thumb_kb": 12,
+    "display_kb": 87,
+    "full_kb": 309
+  },
+  {
+    "title": "sunset02",
+    "category": "sunset",
+    "thumb": "optimized/thumb/sunset__sunset02.webp",
+    "display": "optimized/display/sunset__sunset02.webp",
+    "full": "optimized/full/sunset__sunset02.webp",
+    "thumb_kb": 27,
+    "display_kb": 296,
+    "full_kb": 1213
+  },
+  {
+    "title": "sunset",
+    "category": "sunset",
+    "thumb": "optimized/thumb/sunset.webp",
+    "display": "optimized/display/sunset.webp",
+    "full": "optimized/full/sunset.webp",
+    "thumb_kb": 6,
+    "display_kb": 44,
+    "full_kb": 155
   }
 ]
