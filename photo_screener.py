@@ -28,17 +28,18 @@ CATEGORY_RULES = [
     ("日落", "sunset"), ("sunset", "sunset"), ("晚", "sunset"),
     ("荷花", "lotus"), ("lotus", "lotus"), ("洪湖", "lotus"),
     ("婚礼", "event"), ("wedding", "event"), ("嫁娶", "event"),
-    ("深圳湾", "cityscape"), ("蛇口", "cityscape"),
+    ("深圳湾", "cityscape"), ("蛇口", "cityscape"), ("天文台", "landscape"),
     ("长城", "landscape"), ("北京", "travel"), ("香港", "travel"),
-    ("自驾", "travel"), ("徒步", "travel"),
+    ("自驾", "travel"), ("徒步", "travel"), ("四川", "travel"), ("上海", "travel"),
     ("毕业", "event"), ("太极", "event"),
-    ("车", "automotive"), ("提车", "automotive"),
+    ("车", "automotive"), ("提车", "automotive"), ("领克", "automotive"), ("miat", "automotive"),
     ("星空", "star"), ("星轨", "star"), ("star", "star"),
     ("鸟", "bird"), ("bird", "bird"),
-    ("花", "flower"), ("flower", "flower"),
-    ("宠物", "pet"), ("狗", "pet"), ("bobby", "pet"),
+    ("花", "flower"), ("flower", "flower"), ("樱", "flower"),
+    ("宠物", "pet"), ("狗", "pet"), ("波比", "pet"), ("bobby", "pet"),
     ("澳门", "travel"), ("日常", "daily"),
-    ("手机", "phone"), ("phone", "phone"),
+    ("手机", "phone"), ("phone", "phone"), ("phonephoto", "phone"),
+    ("吉他", "portrait"), ("写真", "portrait"), ("毕业照", "portrait"),
 ]
 
 RATING_EMOJI = {1: "⭐", 2: "⭐⭐", 3: "🌟🌟🌟", 4: "🔥🔥🔥🔥", 5: "👑👑👑👑👑"}
@@ -63,8 +64,46 @@ def build_absolute_path(root_abs: str, folder_path: str, file_base: str, extensi
     return os.path.normpath(os.path.join(*parts))
 
 
-def check_accessible(filepath: str) -> bool:
-    return os.path.exists(filepath)
+# Path remapping: LR catalog expects /Volumes/photo/ → now NAS at /Volumes/home/Photos/
+# Also: raw files may have corresponding jpgs in a jpg/ subfolder
+PATH_REMAPS = [
+    ("/Volumes/photo/A图片/", "/Volumes/home/Photos/A图片/"),
+    ("/Volumes/home/壁纸/", "/Volumes/home/壁纸/"),  # same, no change
+]
+
+def try_remap_path(original_path: str) -> str:
+    """Try path remappings first, then try to find jpgs near raw files."""
+    if os.path.exists(original_path):
+        return original_path
+
+    # 1. Try remapped volume paths
+    for old_prefix, new_prefix in PATH_REMAPS:
+        if original_path.startswith(old_prefix):
+            remapped = original_path.replace(old_prefix, new_prefix, 1)
+            if os.path.exists(remapped):
+                return remapped
+
+            # 2. For raw files, try finding jpg in same or jpg/ folder
+            import re
+            base = os.path.splitext(remapped)[0]
+            base_dir = os.path.dirname(remapped)
+            base_name = os.path.basename(base)
+
+            # Try: same dir, .jpg extension
+            for ext in [".jpg", ".JPG", ".jpeg", ".JPEG"]:
+                candidate = os.path.join(base_dir, base_name + ext)
+                if os.path.exists(candidate):
+                    return candidate
+
+            # Try: ../jpg/filename.jpg
+            jpg_dir = os.path.join(base_dir, "jpg")
+            if os.path.isdir(jpg_dir):
+                for ext in [".jpg", ".JPG", ".jpeg", ".JPEG"]:
+                    candidate = os.path.join(jpg_dir, base_name + ext)
+                    if os.path.exists(candidate):
+                        return candidate
+
+    return original_path  # fallback, will show as inaccessible
 
 
 def format_size(size_bytes: int) -> str:
@@ -125,9 +164,11 @@ def load_catalog(stars_filter=None, category_filter=None, accessible_only=False)
         root_path = (row["rootPath"] or "").rstrip("/")
 
         abs_path = build_absolute_path(root_path, path_from_root, base_name, extension)
+        # Try path remapping for NAS/external drives
+        actual_path = try_remap_path(abs_path)
+        accessible = os.path.exists(actual_path)
+        file_size = os.path.getsize(actual_path) if accessible else 0
         category = detect_category(path_from_root, base_name)
-        accessible = check_accessible(abs_path)
-        file_size = os.path.getsize(abs_path) if accessible else 0
 
         if category_filter and category != category_filter:
             continue
@@ -137,7 +178,7 @@ def load_catalog(stars_filter=None, category_filter=None, accessible_only=False)
         results.append({
             "rating": rating,
             "category": category,
-            "path": abs_path,
+            "path": actual_path,
             "accessible": accessible,
             "size": file_size,
             "size_str": format_size(file_size),
@@ -204,7 +245,8 @@ def print_report(photos):
         "event": "活动/婚礼", "cityscape": "城市风光", "landscape": "自然风光",
         "travel": "旅行", "automotive": "汽车", "star": "星空/星轨",
         "bird": "鸟类", "flower": "花卉", "pet": "宠物",
-        "daily": "日常", "phone": "手机随拍", "other": "其他"
+        "daily": "日常", "phone": "手机随拍", "portrait": "人像/写真",
+        "other": "其他"
     }
     for cat in sorted(by_category.keys(), key=lambda c: -len(by_category[c])):
         count = len(by_category[cat])
