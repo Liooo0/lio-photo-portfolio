@@ -4,6 +4,3 @@ __pycache__/
 *.tmp
 screenshots/
 screenshot.py
-*_log.json
-exif_plan.json
-candidates/
