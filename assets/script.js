@@ -54,14 +54,19 @@
   function formatCategory(cat) {
     const map = {
       all: '全部',
-      star: '星轨',
       sunrise: '日出',
       sunset: '日落',
       lotus: '荷花',
-      bird: '鸟类',
       flower: '花',
+      landscape: '风光',
+      cityscape: '城市',
+      star: '星空',
+      travel: '旅行',
+      automotive: '汽车',
+      event: '漫展',
+      bird: '鸟类',
       pet: '宠物',
-      uncategorized: '其他'
+      other: '其他'
     };
     return map[cat] || cat;
   }
