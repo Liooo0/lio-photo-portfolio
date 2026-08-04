@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>机位地图 · Lio 摄影作品集</title>
+  <meta name="description" content="Lio 刘迪迪的摄影机位地图。按拍摄坐标浏览照片机位，点击查看缩略图与拍摄参数。">
+  <meta property="og:title" content="机位地图 · Lio 摄影作品集">
+  <meta property="og:description" content="按拍摄坐标浏览照片机位 · 松下S5II创作者">
+  <meta property="og:image" content="images/best2025-hero.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+  <!-- Leaflet 本地引用（纯前端，无需 key） -->
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="map-body">
+
+  <!-- 站点导航（与首页一致） -->
+  <nav class="site-nav" aria-label="站点导航">
+    <a href="index.html" class="site-nav-link">作品集</a>
+    <a href="map.html" class="site-nav-link active">机位地图</a>
+  </nav>
+
+  <!-- 顶栏 -->
+  <header class="map-topbar">
+    <h1 class="map-title">机位地图</h1>
+    <p class="map-sub" id="mapStats">加载中…</p>
+  </header>
+
+  <!-- 地图区：相对定位容器，空状态浮层/明暗按钮都相对地图区而非整个视口 -->
+  <main class="map-stage">
+    <!-- 地图容器 -->
+    <div id="map" class="map-canvas map-dark" aria-label="摄影机位地图"></div>
+
+    <!-- 空状态提示（没有带坐标的照片时浮在地图上） -->
+    <div class="map-empty" id="mapEmpty" hidden>
+      <div class="map-empty-card">
+        <h2>📍 暂无带坐标的照片</h2>
+        <p>现有照片都没有 GPS 信息，地图暂时是空的。<br>在 gallery.json 里给照片补上坐标即可上图：</p>
+        <code>"geo": { "lat": 22.5431, "lng": 114.0579 }</code>
+      </div>
+    </div>
+
+    <!-- 底图明暗切换 -->
+    <button class="map-theme-btn" id="mapThemeBtn" aria-label="切换底图明暗" title="切换底图明暗">☀️</button>
+  </main>
+
+  <!-- Lightbox（与首页同结构：点缩略图看大图 + 拍摄信息） -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="关闭">&times;</button>
+    <button class="lightbox-prev" aria-label="上一张">&lsaquo;</button>
+    <button class="lightbox-next" aria-label="下一张">&rsaquo;</button>
+    <img src="" alt="">
+    <div class="lightbox-info" id="lightboxInfo" hidden></div>
+    <span class="lightbox-counter"></span>
+  </div>
+
+  <script src="assets/vendor/leaflet/leaflet.js"></script>
+  <script src="assets/map.js"></script>
+</body>
+</html>

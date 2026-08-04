@@ -18,7 +18,7 @@ OUTPUT = ROOT / "gallery.json"
 THUMB_WIDTH = 800
 THUMB_QUALITY = 85
 EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
-EXCLUDE = {"best2025.jpg", "avatar.jpg"}
+EXCLUDE = {"best2025.jpg", "best2025-hero.jpg", "best2025-hero.webp", "avatar.jpg"}
 
 result = []
 generated = 0
@@ -88,6 +88,34 @@ for item in sorted(IMAGES_DIR.iterdir()):
             "src": f"images/{item.name}",
             "thumb": f"thumbnails/{item.name}"
         })
+
+# 合并保护：重新生成会丢失手补的 exif/location/geo，先按 title 读旧数据再合并
+# （与 tools.py deploy 同一口径；deploy.sh 走的就是本脚本，不能丢数据）
+# 注：本脚本按"目录=分类"归类，根目录散图会被归成 uncategorized，且只生成
+# thumbnails/ 旧式路径 —— 所以旧条目已有的 category 和 optimized 三级路径一并保留
+old_by_title = {}
+if OUTPUT.exists():
+    try:
+        with open(OUTPUT, encoding="utf-8") as f:
+            old_by_title = {e.get("title"): e for e in json.load(f) if e.get("title")}
+    except Exception:
+        pass
+for item in result:
+    old = old_by_title.get(item["title"]) or {}
+    if old.get("exif"):
+        item["exif"] = old["exif"]
+    item["location"] = old.get("location", "")
+    if old.get("geo"):
+        item["geo"] = old["geo"]
+    if old.get("category"):
+        item["category"] = old["category"]
+    if old.get("display") and old.get("full"):
+        item["thumb"] = old.get("thumb") or item["thumb"]
+        item["display"] = old["display"]
+        item["full"] = old["full"]
+        for kb_key in ("thumb_kb", "display_kb", "full_kb"):
+            if old.get(kb_key):
+                item[kb_key] = old[kb_key]
 
 with open(OUTPUT, "w", encoding="utf-8") as f:
     json.dump(result, f, ensure_ascii=False, indent=2)

@@ -9,8 +9,9 @@
 
 规则:
   - 有拍摄参数(光圈/快门/ISO) → 写入 exif 对象; 没有 → 不写 exif 字段
-  - EXIF 含 GPS → 高德逆地理编码成地点名 (AMAP_KEY 读环境变量或 ~/weather-api-backend/.env)
-  - 无 GPS → location 留空字符串, 由用户手动补
+  - EXIF 含 GPS → 坐标写入 geo 字段 {"lat":..,"lng":..} (机位地图用),
+    并用高德逆地理编码成地点名 (AMAP_KEY 读环境变量或 ~/weather-api-backend/.env)
+  - 无 GPS → location/geo 保留 gallery.json 里已有的手补值, 没有则留空
   - gallery.json 原有字段/顺序全部保留
 """
 
@@ -66,7 +67,7 @@ def find_source(title, category):
 
 def exif_tags(path):
     """读 EXIF, 返回 {标签名: 值} (IFD0 + Exif IFD + GPS IFD)。"""
-    from PIL.ExifTags import TAGS
+    from PIL.ExifTags import TAGS, GPSTAGS
 
     try:
         im = Image.open(path)
@@ -77,14 +78,16 @@ def exif_tags(path):
     tags = {}
     for k, v in ex.items():
         tags[TAGS.get(k, hex(k))] = v
-    for ifd_id in (0x8769, 0x8825):  # Exif IFD, GPS IFD
+    # Exif IFD 用主 TAGS 表; GPS IFD 的标签 ID (1=LatRef,2=Lat,3=LngRef,4=Lng...)
+    # 不在主 TAGS 表里, 必须用 GPSTAGS, 否则会变成 '0x2' 之类的键导致解析不到
+    for ifd_id, mapping in ((0x8769, TAGS), (0x8825, GPSTAGS)):
         try:
             sub = ex.get_ifd(ifd_id)
         except Exception:
             sub = None
         if sub:
             for k, v in sub.items():
-                tags[TAGS.get(k, hex(k))] = v
+                tags[mapping.get(k, hex(k))] = v
     return tags
 
 
@@ -211,6 +214,7 @@ def main():
     for entry in gallery:
         src = find_source(entry.get("title", ""), entry.get("category", ""))
         exif_obj = None
+        gps = None
         location = ""
         if src is None:
             print(f"  ⚠️  找不到原图: {entry.get('title')} (跳过 EXIF)")
@@ -232,7 +236,15 @@ def main():
             entry.pop("exif", None)
             n_without += 1
             print(f"  ❌ {entry['title']:12s} 无拍摄 EXIF")
-        entry["location"] = location
+        if gps:
+            # EXIF GPS → 坐标给机位地图, 地点名给 lightbox
+            entry["geo"] = {"lat": round(gps[0], 6), "lng": round(gps[1], 6)}
+            entry["location"] = location or entry.get("location", "")
+            print(f"  📍 {entry['title']:12s} GPS {gps[0]:.6f},{gps[1]:.6f} "
+                  f"→ {entry['location'] or '(无地点名, 可手补)'}")
+        else:
+            # 无 GPS: 不覆盖手补的 location/geo, 仅保证字段存在
+            entry.setdefault("location", "")
 
     with open(GALLERY, "w", encoding="utf-8") as f:
         json.dump(gallery, f, ensure_ascii=False, indent=2)

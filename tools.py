@@ -361,7 +361,7 @@ def cmd_deploy(go=False):
     # 3. Update gallery.json
     gallery_path = ROOT / "gallery.json"
 
-    # 合并保护：重新生成会丢失手补的 exif/location，先按 title 读旧数据再合并
+    # 合并保护：重新生成会丢失手补的 exif/location/geo，先按 title 读旧数据再合并
     old_by_title = {}
     try:
         with open(gallery_path, encoding="utf-8") as f:
@@ -375,6 +375,8 @@ def cmd_deploy(go=False):
             item["exif"] = exif
         if old.get("location"):
             item["location"] = old["location"]
+        if old.get("geo"):
+            item["geo"] = old["geo"]
 
     with open(gallery_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
