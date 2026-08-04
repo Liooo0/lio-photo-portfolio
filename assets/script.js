@@ -9,6 +9,7 @@
   const lightbox = document.getElementById('lightbox');
   const lbImage = lightbox.querySelector('img');
   const lbCounter = lightbox.querySelector('.lightbox-counter');
+  const lbInfo = lightbox.querySelector('.lightbox-info');
   const backToTop = document.getElementById('backToTop');
   const loadMoreBtn = document.getElementById('loadMoreBtn');
   const loadMoreWrap = document.getElementById('loadMoreWrap');
@@ -181,6 +182,50 @@
     lbImage.src = img.full || img.src;
     lbImage.alt = img.title;
     lbCounter.textContent = `${idx + 1} / ${lightboxImages.length}`;
+    renderShootingInfo(img);
+  }
+
+  // === Shooting info (EXIF + location) in lightbox ===
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function renderShootingInfo(img) {
+    if (!lbInfo) return;
+    const lines = [];
+
+    const e = img.exif;
+    if (e && (e.aperture || e.shutter || e.iso || e.focal_mm)) {
+      const params = [];
+      if (e.aperture) params.push(e.aperture);
+      if (e.shutter) params.push(e.shutter);
+      if (e.iso) params.push(`ISO ${e.iso}`);
+      if (e.focal_mm) {
+        // 等效焦距与实测不同才额外标注（如 APS-C 机身）
+        const eq = e.focal_equiv_mm;
+        params.push(eq && eq !== e.focal_mm
+          ? `${e.focal_mm}mm·等效${eq}mm`
+          : `${eq || e.focal_mm}mm`);
+      }
+      if (params.length) lines.push(`📷 ${params.join(' · ')}`);
+
+      const detail = [e.lens, e.camera, e.taken].filter(Boolean);
+      if (detail.length) lines.push(detail.join(' · '));
+    }
+
+    if (img.location) lines.push(`📍 ${img.location}`);
+
+    if (lines.length) {
+      lbInfo.innerHTML = lines
+        .map(l => `<div class="lightbox-info-line">${escapeHtml(l)}</div>`)
+        .join('');
+      lbInfo.hidden = false;
+    } else {
+      lbInfo.innerHTML = '';
+      lbInfo.hidden = true; // 无 EXIF 也无地点：整块隐藏，布局不受影响
+    }
   }
 
   function showPrev(e) {
