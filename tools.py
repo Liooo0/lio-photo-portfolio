@@ -360,6 +360,22 @@ def cmd_deploy(go=False):
 
     # 3. Update gallery.json
     gallery_path = ROOT / "gallery.json"
+
+    # 合并保护：重新生成会丢失手补的 exif/location，先按 title 读旧数据再合并
+    old_by_title = {}
+    try:
+        with open(gallery_path, encoding="utf-8") as f:
+            old_by_title = {e.get("title"): e for e in json.load(f) if e.get("title")}
+    except Exception:
+        pass
+    for item in result:
+        old = old_by_title.get(item["title"]) or {}
+        exif = old.get("exif")
+        if exif:
+            item["exif"] = exif
+        if old.get("location"):
+            item["location"] = old["location"]
+
     with open(gallery_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
