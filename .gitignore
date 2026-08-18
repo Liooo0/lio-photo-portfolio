@@ -8,3 +8,7 @@ screenshot.py
 exif_plan.json
 candidates/
 images/new/
+
+# 原图与旧缩略图不入库(备份在 ~/Pictures/lio-photo-raw-backup)
+images/
+thumbnails/
