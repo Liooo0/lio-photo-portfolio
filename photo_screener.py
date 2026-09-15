@@ -18,8 +18,10 @@ from pathlib import Path
 from collections import defaultdict
 
 # === Config ===
-LRCAT = "~/Pictures/Lightroom/Lightroom Catalog.lrcat"
-PORTFOLIO_DIR = Path("~/lio-photo-portfolio")
+# 本机路径动态求值（原来写死 /Users/<用户名>，公开仓库里会暴露本机目录结构；
+# 同仓库 tools.py 一直是正确写法，这里统一）
+LRCAT = os.path.expanduser("~/Pictures/Lightroom/Lightroom Catalog.lrcat")
+PORTFOLIO_DIR = Path(os.path.expanduser("~/lio-photo-portfolio"))
 CANDIDATES_DIR = PORTFOLIO_DIR / "candidates"
 
 # Folder name → category mapping
